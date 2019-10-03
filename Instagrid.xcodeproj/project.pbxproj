@@ -56,15 +56,47 @@
 		4FBA572623466D3F0053F0A0 /* Instagrid */ = {
 			isa = PBXGroup;
 			children = (
-				4FBA572723466D3F0053F0A0 /* AppDelegate.swift */,
-				4FBA572923466D3F0053F0A0 /* SceneDelegate.swift */,
-				4FBA572B23466D3F0053F0A0 /* ViewController.swift */,
-				4FBA572D23466D3F0053F0A0 /* Main.storyboard */,
-				4FBA573023466D410053F0A0 /* Assets.xcassets */,
-				4FBA573223466D410053F0A0 /* LaunchScreen.storyboard */,
-				4FBA573523466D410053F0A0 /* Info.plist */,
+				4FBA573B234672BC0053F0A0 /* Model */,
+				4FBA573D234672D50053F0A0 /* View */,
+				4FBA573C234672CF0053F0A0 /* Controlleur */,
+				4FBA573E234672F00053F0A0 /* Supporting Files */,
 			);
 			path = Instagrid;
+			sourceTree = "<group>";
+		};
+		4FBA573B234672BC0053F0A0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4FBA573C234672CF0053F0A0 /* Controlleur */ = {
+			isa = PBXGroup;
+			children = (
+				4FBA572B23466D3F0053F0A0 /* ViewController.swift */,
+			);
+			path = Controlleur;
+			sourceTree = "<group>";
+		};
+		4FBA573D234672D50053F0A0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4FBA572D23466D3F0053F0A0 /* Main.storyboard */,
+				4FBA573223466D410053F0A0 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4FBA573E234672F00053F0A0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4FBA572723466D3F0053F0A0 /* AppDelegate.swift */,
+				4FBA572923466D3F0053F0A0 /* SceneDelegate.swift */,
+				4FBA573023466D410053F0A0 /* Assets.xcassets */,
+				4FBA573523466D410053F0A0 /* Info.plist */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,7 +248,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -270,7 +302,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -286,7 +318,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3KQMJ8RW9C;
-				INFOPLIST_FILE = Instagrid/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Instagrid/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -304,7 +337,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3KQMJ8RW9C;
-				INFOPLIST_FILE = Instagrid/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Instagrid/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
