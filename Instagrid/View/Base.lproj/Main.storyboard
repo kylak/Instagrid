@@ -28,8 +28,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ces-n0-Xe1" userLabel="MainGrid">
-                                <rect key="frame" x="56.169559092816712" y="293.5" width="300" height="300"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ces-n0-Xe1" userLabel="MainGrid">
+                                <rect key="frame" x="57" y="293.5" width="300" height="300"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="hvd-Gd-Sge" userLabel="TopLine">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="150"/>
@@ -98,6 +98,7 @@
                             <constraint firstItem="ces-n0-Xe1" firstAttribute="top" secondItem="62e-n0-64L" secondAttribute="bottom" constant="8" id="c6M-iZ-3KN"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="RzP-Fg-2GL" secondAttribute="bottom" constant="91" id="eMC-up-xpK"/>
                             <constraint firstItem="AOf-d0-FWU" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="45" id="jgw-gP-gOf"/>
+                            <constraint firstItem="ces-n0-Xe1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qlF-Hb-KVb"/>
                             <constraint firstItem="AOf-d0-FWU" firstAttribute="centerX" secondItem="RzP-Fg-2GL" secondAttribute="centerX" id="yR5-tB-9mV"/>
                             <constraint firstItem="62e-n0-64L" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="177" id="yoH-Be-V2R"/>
                         </constraints>
