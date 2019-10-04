@@ -13,6 +13,8 @@
 		4FBA572F23466D3F0053F0A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FBA572D23466D3F0053F0A0 /* Main.storyboard */; };
 		4FBA573123466D410053F0A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FBA573023466D410053F0A0 /* Assets.xcassets */; };
 		4FBA573423466D410053F0A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FBA573223466D410053F0A0 /* LaunchScreen.storyboard */; };
+		4FDE811E23477EC400A96A3E /* Delm-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4FDE811C23477EC300A96A3E /* Delm-Medium.otf */; };
+		4FDE811F23477EC400A96A3E /* ThirstySoftRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4FDE811D23477EC400A96A3E /* ThirstySoftRegular.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		4FBA573023466D410053F0A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4FBA573323466D410053F0A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4FBA573523466D410053F0A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4FDE811C23477EC300A96A3E /* Delm-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Delm-Medium.otf"; path = "Polices/Delm-Medium.otf"; sourceTree = "<group>"; };
+		4FDE811D23477EC400A96A3E /* ThirstySoftRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = ThirstySoftRegular.otf; path = Polices/ThirstySoftRegular.otf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +98,8 @@
 				4FBA572723466D3F0053F0A0 /* AppDelegate.swift */,
 				4FBA572923466D3F0053F0A0 /* SceneDelegate.swift */,
 				4FBA573023466D410053F0A0 /* Assets.xcassets */,
+				4FDE811C23477EC300A96A3E /* Delm-Medium.otf */,
+				4FDE811D23477EC400A96A3E /* ThirstySoftRegular.otf */,
 				4FBA573523466D410053F0A0 /* Info.plist */,
 			);
 			path = "Supporting Files";
@@ -159,6 +165,8 @@
 			files = (
 				4FBA573423466D410053F0A0 /* LaunchScreen.storyboard in Resources */,
 				4FBA573123466D410053F0A0 /* Assets.xcassets in Resources */,
+				4FDE811F23477EC400A96A3E /* ThirstySoftRegular.otf in Resources */,
+				4FDE811E23477EC400A96A3E /* Delm-Medium.otf in Resources */,
 				4FBA572F23466D3F0053F0A0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
