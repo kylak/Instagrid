@@ -73,7 +73,7 @@
                                 <variation key="heightClass=compact" axis="vertical"/>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe left to share" lineBreakMode="middleTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="81" translatesAutoresizingMaskIntoConstraints="NO" id="xGS-qA-XZT">
-                                <rect key="frame" x="51" y="144.5" width="151" height="86.5"/>
+                                <rect key="frame" x="51" y="144.5" width="165" height="86.5"/>
                                 <fontDescription key="fontDescription" name="Delm-Medium" family="Delm" pointSize="26"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -172,7 +172,7 @@
                             </constraint>
                             <constraint firstItem="Yt0-0I-eg9" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="tQD-gV-byb"/>
                             <constraint firstItem="Yt0-0I-eg9" firstAttribute="top" relation="greaterThanOrEqual" secondItem="AOf-d0-FWU" secondAttribute="bottom" constant="2" id="w5x-96-o2B">
-                                <variation key="heightClass=compact" constant="16"/>
+                                <variation key="heightClass=compact" constant="30"/>
                             </constraint>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
