@@ -42,15 +42,16 @@
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="RzP-Fg-2GL">
                                 <rect key="frame" x="47.5" y="555" width="280" height="80"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YIC-di-2vU" userLabel="Layout1Button">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YIC-di-2vU" userLabel="Layout1Button">
                                         <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="Bnx-zx-Hb4"/>
                                             <constraint firstAttribute="height" constant="80" id="sp5-Vz-s2f"/>
                                         </constraints>
-                                        <state key="normal" image="Selected" backgroundImage="Layout 1"/>
-                                        <state key="selected" image="Selected"/>
-                                        <state key="highlighted" image="Selected"/>
+                                        <state key="normal" backgroundImage="Layout 1"/>
+                                        <connections>
+                                            <action selector="Layout1ButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zcX-ly-2OD"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eqW-Bq-lvN" userLabel="Layout2Button">
                                         <rect key="frame" x="100" y="0.0" width="80" height="80"/>
@@ -58,8 +59,10 @@
                                             <constraint firstAttribute="height" constant="80" id="h6m-cU-Mg0"/>
                                             <constraint firstAttribute="width" constant="80" id="vbu-hp-cgj"/>
                                         </constraints>
-                                        <state key="normal" image="Selected" backgroundImage="Layout 2"/>
-                                        <state key="highlighted" image="Selected"/>
+                                        <state key="normal" backgroundImage="Layout 2"/>
+                                        <connections>
+                                            <action selector="Layout2ButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ae8-ur-5Pt"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y3L-Og-jGm" userLabel="Layout3Button">
                                         <rect key="frame" x="200" y="0.0" width="80" height="80"/>
@@ -67,7 +70,10 @@
                                             <constraint firstAttribute="width" constant="80" id="9Ny-DY-qEO"/>
                                             <constraint firstAttribute="height" constant="80" id="Oh7-C5-zvk"/>
                                         </constraints>
-                                        <state key="normal" image="Selected" backgroundImage="Layout 3"/>
+                                        <state key="normal" backgroundImage="Layout 3"/>
+                                        <connections>
+                                            <action selector="Layout3ButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VVZ-ql-fYt"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <variation key="heightClass=compact" axis="vertical"/>
@@ -239,6 +245,13 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="BottomRightButton" destination="CQl-tT-lWb" id="f0v-4H-QD4"/>
+                        <outlet property="Layout1Button" destination="YIC-di-2vU" id="RX9-QC-prw"/>
+                        <outlet property="Layout2Button" destination="eqW-Bq-lvN" id="riW-i7-n03"/>
+                        <outlet property="Layout3Button" destination="y3L-Og-jGm" id="XMi-vY-Syo"/>
+                        <outlet property="TopRightButton" destination="ag8-y1-9Ca" id="RyK-79-RNp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -252,6 +265,5 @@
         <image name="Layout 2" width="27" height="27"/>
         <image name="Layout 3" width="27" height="27"/>
         <image name="Plus" width="13.5" height="13.5"/>
-        <image name="Selected" width="27" height="27"/>
     </resources>
 </document>
