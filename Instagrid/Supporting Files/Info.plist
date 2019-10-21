@@ -65,5 +65,9 @@
 		<string>Delm-Medium.otf</string>
 		<string>ThirstySoftRegular.otf</string>
 	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app wants to use your photos.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>This app could save images in your photo library.</string>
 </dict>
 </plist>
