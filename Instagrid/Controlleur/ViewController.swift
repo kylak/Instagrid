@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
@@ -14,10 +15,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     @IBOutlet weak var TextToSwipeUp: UILabel!
     
     @IBOutlet weak var MainGridView: UIView!
-    @IBOutlet weak var TitleView: UILabel!
     @IBOutlet weak var PortraitMainConstraint: NSLayoutConstraint! // PortraitMainConstraint = Safe Area.trailing ≥ MainGrid View.trailing + 30
     @IBOutlet weak var LandscapeMainConstraint: NSLayoutConstraint! // LandscapeMainConstraint = MainGrid View.top ≥ Title.bottom + 30
-    
     @IBOutlet weak var ConstraintToRemove: NSLayoutConstraint!
     
     @IBOutlet weak var TopLeftButton: UIButton!
@@ -38,41 +37,16 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     override func viewDidLoad() {
         super.viewDidLoad()
         defaultMainGridView()
-        finishDesign()
+        MainGridView.heightAnchor.constraint(equalToConstant: MainGridView.frame.height).isActive = true // On fixe la taille de la grille à la taille du téléphone.
+        view.removeConstraints([ConstraintToRemove, PortraitMainConstraint, LandscapeMainConstraint])
         ManageSwipeUpGesture()
     }
     
-    func finishDesign() {
-        if (traitCollection.horizontalSizeClass == .compact && traitCollection.verticalSizeClass == .regular) {
-            ConstraintToRemove.isActive = false
-            PortraitMainConstraint = view.trailingAnchor.constraint(equalTo: MainGridView.layoutMarginsGuide.trailingAnchor, constant: view.bounds.width - MainGridView.bounds.width)
-            print(view.bounds.width - MainGridView.bounds.width)
-            LandscapeMainConstraint.isActive = false
-            PortraitMainConstraint.isActive = true
-            PortraitModeInitializedFirst = true
-        }
-        /*else if (traitCollection.verticalSizeClass == .compact) {
-            PortraitMainConstraint.isActive = false
-            LandscapeMainConstraint = MainGridView.topAnchor.constraint(equalTo: TitleView.layoutMarginsGuide.bottomAnchor, constant: MainGridView.bounds.minY - TitleView.bounds.maxY)
-            LandscapeMainConstraint.isActive = true
-            PortraitModeInitializedFirst = false
-        }*/
-    }
-    
-    /*override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        if (!PortraitModeInitializedFirst && self.view.traitCollection.verticalSizeClass == .compact) {
-            finishDesign()
-        }
-        if (self.view.traitCollection.verticalSizeClass == .compact) {
-            PortraitMainConstraint?.isActive = false
-            LandscapeMainConstraint?.isActive = true
-        }
-        else if (traitCollection.horizontalSizeClass == .compact && traitCollection.verticalSizeClass == .regular) {
-            LandscapeMainConstraint?.isActive = false
-            PortraitMainConstraint?.isActive = true
-        }
-    }*/
+        MainGridView.heightAnchor.constraint(equalToConstant: MainGridView.frame.height).isActive = true // On fixe la taille de la grille à la taille du téléphone.
+        view.removeConstraints([ConstraintToRemove, PortraitMainConstraint, LandscapeMainConstraint])
+    }
     
     func defaultMainGridView() {
         Layout1ButtonTouched("")
@@ -157,17 +131,18 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true, completion: nil)
-        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            buttonTouched.contentMode = .scaleAspectFit
-            buttonTouched.setImage(image, for: UIControl.State.normal)
-        }
+        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage { insertPickedImageIntoMainGrid(pickedImage) }
+    }
+    
+    func insertPickedImageIntoMainGrid(_ image: UIImage) {
+        buttonTouched.contentMode = .scaleAspectFit
+        buttonTouched.setImage(image, for: UIControl.State.normal)
     }
     
     @objc func Swipped(_ sender: UISwipeGestureRecognizer) {
         switch sender.state {
             case .ended:
-                // créer la nouvelle image a sauvegardé.
-                let items = [ TopLeftButton.imageView?.image! ]
+                let items = [MainGridView.image] // MainGridView.image est l'image représentant la MainGrid, càd celle que l'on veut enregistrer.
                 let ac = UIActivityViewController(activityItems: items as [Any], applicationActivities: nil)
                 present(ac, animated: true)
             default: break;
@@ -176,3 +151,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
 }
 
+extension UIView {
+    // On étend la classe UIView avec une nouvelle propriété "image" comme screenshot. La méthode snapshotView() fournit par Apple renvoie un UIView non un UIImageView, utiliser snapshotView() nécessiterait donc en plus de caster la valeur de retour en UIImageView, la solution d'étendre la classe UIView est donc la plus simple et plus rapide solution trouvée.
+    var image: UIImage? {
+        let renderer = UIGraphicsImageRenderer(bounds: bounds)
+        return renderer.image { rendererContext in layer.render(in: rendererContext.cgContext) }
+    }
+}
+
+// let rect = AVMakeRect(aspectRatio: buttonTouched.intrinsicContentSize, insideRect: buttonTouched.bounds)
