@@ -33,8 +33,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     var imagePicker = UIImagePickerController()
     var buttonTouched = UIButton()
     var PortraitModeInitializedFirst = false
-    var SwipeArrowUp = UISwipeGestureRecognizer(target: self, action: #selector(Swipped(_:)))
-    var SwipeArrowLeft = UISwipeGestureRecognizer(target: self, action: #selector(Swipped(_:)))
+    
+    func defaultMainGridView() {
+        Layout1ButtonTouched("")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,50 +44,24 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         MainGridView.heightAnchor.constraint(equalToConstant: MainGridView.frame.height).isActive = true // On fixe la taille de la grille à la taille du téléphone.
         view.removeConstraints([ConstraintToRemove, PortraitMainConstraint, LandscapeMainConstraint])
         ManageSwipeUpGesture()
-        dependOnTraitCollection()
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         MainGridView.heightAnchor.constraint(equalToConstant: MainGridView.frame.height).isActive = true // On fixe la taille de la grille à la taille du téléphone.
         view.removeConstraints([ConstraintToRemove, PortraitMainConstraint, LandscapeMainConstraint])
-        dependOnTraitCollection()
     }
     
-    // Cette méthode fonctionne.
-    func doesItHaveThisGesture(view: UIView, gesture: UISwipeGestureRecognizer) -> Bool {
-        guard let gestures = ArrowToSwipe.gestureRecognizers else { return false }
-        for a_view_gesture in gestures {
-            if (gesture == a_view_gesture) {
-                return true
-            }
+    func addSwipeGesture(to view: UIView, _ gesture_tab: [UISwipeGestureRecognizer.Direction]) {
+        for direction in gesture_tab {
+            let gesture = UISwipeGestureRecognizer(target: self, action: #selector(Swipped(_:)))
+            gesture.direction = direction
+            view.addGestureRecognizer(gesture)
         }
-        return false
-    }
-    
-    func dependOnTraitCollection() {
-        if (traitCollection.horizontalSizeClass == .compact && traitCollection.verticalSizeClass == .regular) {
-            if(doesItHaveThisGesture(view: ArrowToSwipe, gesture: SwipeArrowLeft)) {
-                ArrowToSwipe.removeGestureRecognizer(SwipeArrowLeft)
-            }
-            SwipeArrowUp.direction = UISwipeGestureRecognizer.Direction.up
-            ArrowToSwipe.addGestureRecognizer(SwipeArrowUp)
-            
-        }
-        else if (traitCollection.verticalSizeClass == .compact) {
-            if(doesItHaveThisGesture(view: ArrowToSwipe, gesture: SwipeArrowUp)) {
-                ArrowToSwipe.removeGestureRecognizer(SwipeArrowUp)
-            }
-            SwipeArrowLeft.direction = UISwipeGestureRecognizer.Direction.left
-            ArrowToSwipe.addGestureRecognizer(SwipeArrowLeft)
-        }
-    }
-    
-    func defaultMainGridView() {
-        Layout1ButtonTouched("")
     }
     
     func ManageSwipeUpGesture() {
+        addSwipeGesture(to: ArrowToSwipe, [.up, .left])
         let SwipeUpGestureForText = UISwipeGestureRecognizer(target: self, action: #selector(Swipped(_:)))
         SwipeUpGestureForText.direction = UISwipeGestureRecognizer.Direction.up
         TextToSwipeUp.addGestureRecognizer(SwipeUpGestureForText)
@@ -170,6 +146,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     }
     
     @objc func Swipped(_ sender: UISwipeGestureRecognizer) {
+        if (sender.direction == .left && traitCollection.horizontalSizeClass == .compact && traitCollection.verticalSizeClass == .regular || sender.direction == .up && traitCollection.verticalSizeClass == .compact) {
+            return;
+        }
         print("gesture received !")
         switch sender.state {
             case .ended:
