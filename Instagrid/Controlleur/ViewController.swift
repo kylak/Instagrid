@@ -13,6 +13,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     @IBOutlet weak var ArrowToSwipe: UIImageView!
     @IBOutlet weak var TextToSwipeUp: UILabel!
+    @IBOutlet weak var TextToSwipeLeft: UILabel!
+    
     
     @IBOutlet weak var MainGridView: UIView!
     @IBOutlet weak var PortraitMainConstraint: NSLayoutConstraint! // PortraitMainConstraint = Safe Area.trailing ≥ MainGrid View.trailing + 30
@@ -62,9 +64,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     func ManageSwipeUpGesture() {
         addSwipeGesture(to: ArrowToSwipe, [.up, .left])
-        let SwipeUpGestureForText = UISwipeGestureRecognizer(target: self, action: #selector(Swipped(_:)))
-        SwipeUpGestureForText.direction = UISwipeGestureRecognizer.Direction.up
-        TextToSwipeUp.addGestureRecognizer(SwipeUpGestureForText)
+        addSwipeGesture(to: TextToSwipeUp, [.up])
+        addSwipeGesture(to: TextToSwipeLeft, [.left])
     }
     
     @IBAction func Layout1ButtonTouched(_ sender: Any) {
@@ -149,7 +150,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         if (sender.direction == .left && traitCollection.horizontalSizeClass == .compact && traitCollection.verticalSizeClass == .regular || sender.direction == .up && traitCollection.verticalSizeClass == .compact) {
             return;
         }
-        print("gesture received !")
         switch sender.state {
             case .ended:
                 let items = [MainGridView.image] // MainGridView.image est l'image représentant la MainGrid, càd celle que l'on veut enregistrer.

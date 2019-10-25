@@ -79,7 +79,7 @@
                                 </subviews>
                                 <variation key="heightClass=compact" axis="vertical"/>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe left to share" lineBreakMode="middleTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="81" translatesAutoresizingMaskIntoConstraints="NO" id="xGS-qA-XZT">
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe left to share" lineBreakMode="middleTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="81" translatesAutoresizingMaskIntoConstraints="NO" id="xGS-qA-XZT">
                                 <rect key="frame" x="51" y="144.5" width="165" height="86.5"/>
                                 <fontDescription key="fontDescription" name="Delm-Medium" family="Delm" pointSize="26"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -268,6 +268,7 @@
                         <outlet property="Layout3Button" destination="y3L-Og-jGm" id="XMi-vY-Syo"/>
                         <outlet property="MainGridView" destination="Yt0-0I-eg9" id="1iF-JH-iyt"/>
                         <outlet property="PortraitMainConstraint" destination="OPr-Bh-9dL" id="CAj-If-twF"/>
+                        <outlet property="TextToSwipeLeft" destination="xGS-qA-XZT" id="Xzl-bd-mD6"/>
                         <outlet property="TextToSwipeUp" destination="juu-oO-EmD" id="Kw2-Hs-0At"/>
                         <outlet property="TopLeftButton" destination="tWB-SA-QOe" id="v77-Tw-3oy"/>
                         <outlet property="TopRightButton" destination="ag8-y1-9Ca" id="RyK-79-RNp"/>
