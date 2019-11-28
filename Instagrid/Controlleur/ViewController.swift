@@ -16,9 +16,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     @IBOutlet weak var TextToSwipeLeft: UILabel!
     
     @IBOutlet weak var MainGridView: UIView!
-    @IBOutlet weak var PortraitMainConstraint: NSLayoutConstraint! // PortraitMainConstraint = Safe Area.trailing ≥ MainGrid View.trailing + 30
-    @IBOutlet weak var LandscapeMainConstraint: NSLayoutConstraint! // LandscapeMainConstraint = MainGrid View.top ≥ Title.bottom + 30
-    @IBOutlet weak var ConstraintToRemove: NSLayoutConstraint!
     
     @IBOutlet weak var TopLeftButton: UIButton!
     @IBOutlet weak var BottomLeftButton: UIButton!
@@ -42,15 +39,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     override func viewDidLoad() {
         super.viewDidLoad()
         defaultMainGridView()
-        MainGridView.heightAnchor.constraint(equalToConstant: MainGridView.frame.height).isActive = true // On fixe la taille de la grille à la taille du téléphone.
-        view.removeConstraints([ConstraintToRemove, PortraitMainConstraint, LandscapeMainConstraint])
         ManageSwipeUpGesture()
-    }
-    
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        MainGridView.heightAnchor.constraint(equalToConstant: MainGridView.frame.height).isActive = true // On fixe la taille de la grille à la taille du téléphone.
-        view.removeConstraints([ConstraintToRemove, PortraitMainConstraint, LandscapeMainConstraint])
     }
     
     func addSwipeGesture(to view: UIView, _ gesture_tab: [UISwipeGestureRecognizer.Direction]) {
