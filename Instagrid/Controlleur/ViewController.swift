@@ -15,7 +15,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     @IBOutlet weak var TextToSwipeUp: UILabel!
     @IBOutlet weak var TextToSwipeLeft: UILabel!
     
-    
     @IBOutlet weak var MainGridView: UIView!
     @IBOutlet weak var PortraitMainConstraint: NSLayoutConstraint! // PortraitMainConstraint = Safe Area.trailing ≥ MainGrid View.trailing + 30
     @IBOutlet weak var LandscapeMainConstraint: NSLayoutConstraint! // LandscapeMainConstraint = MainGrid View.top ≥ Title.bottom + 30
@@ -56,7 +55,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     func addSwipeGesture(to view: UIView, _ gesture_tab: [UISwipeGestureRecognizer.Direction]) {
         for direction in gesture_tab {
-            let gesture = UISwipeGestureRecognizer(target: self, action: #selector(Swipped(_:)))
+            let gesture = UISwipeGestureRecognizer(target: self, action: #selector(Swiped(_:)))
             gesture.direction = direction
             view.addGestureRecognizer(gesture)
         }
@@ -66,6 +65,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         addSwipeGesture(to: ArrowToSwipe, [.up, .left])
         addSwipeGesture(to: TextToSwipeUp, [.up])
         addSwipeGesture(to: TextToSwipeLeft, [.left])
+        addSwipeGesture(to: MainGridView, [.up, .left])
     }
     
     @IBAction func Layout1ButtonTouched(_ sender: Any) {
@@ -146,17 +146,41 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         buttonTouched.setImage(image, for: UIControl.State.normal)
     }
     
-    @objc func Swipped(_ sender: UISwipeGestureRecognizer) {
-        if (sender.direction == .left && traitCollection.horizontalSizeClass == .compact && traitCollection.verticalSizeClass == .regular || sender.direction == .up && traitCollection.verticalSizeClass == .compact) {
-            return;
+    func isSwipeValid(_ sender: UISwipeGestureRecognizer) -> Bool {
+        return (sender.direction == .left && traitCollection.verticalSizeClass == .compact) || (sender.direction == .up && traitCollection.verticalSizeClass == .regular && traitCollection.horizontalSizeClass == .compact)
+    }
+    
+    @objc func Swiped(_ sender: UISwipeGestureRecognizer) {
+        if isSwipeValid(sender) {
+            var translation = CGAffineTransform();
+            if (sender.direction == .up) {
+                translation = CGAffineTransform(translationX: 0, y: -MainGridView.frame.maxY)
+            }
+            else if (sender.direction == .left) {
+                translation = CGAffineTransform(translationX: -MainGridView.frame.maxX, y: 0)
+            }
+            UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.3, delay: 0, options: [.curveEaseIn], animations: {
+                self.MainGridView.transform = translation
+                },
+                completion: { (end) in
+                    let share = self.getTheMainGridImageReadyToShare(sender);
+                    self.present(share, animated: true);
+                }
+            )
         }
-        switch sender.state {
-            case .ended:
-                let items = [MainGridView.image] // MainGridView.image est l'image représentant la MainGrid, càd celle que l'on veut enregistrer.
-                let ac = UIActivityViewController(activityItems: items as [Any], applicationActivities: nil)
-                present(ac, animated: true)
-            default: break;
+    }
+    
+    func getTheMainGridImageReadyToShare(_ sender: UISwipeGestureRecognizer) -> UIActivityViewController {
+        let image = [self.MainGridView.image] // MainGridView.image est l'image représentant la MainGrid, càd celle que l'on veut enregistrer.
+        let activityViewController = UIActivityViewController(activityItems: image as [Any], applicationActivities: nil)
+        activityViewController.completionWithItemsHandler = UIActivityViewController.CompletionWithItemsHandler? { activityType,completed,returnedItems,activityError in
+            UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.3, delay: 0, options: [.curveEaseIn], animations: {
+                self.MainGridView.transform = CGAffineTransform(translationX: 0, y: 0)
+                },
+                completion: nil
+            )
         }
+        return activityViewController
     }
     
 }
