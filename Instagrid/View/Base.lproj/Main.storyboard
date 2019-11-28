@@ -45,35 +45,38 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YIC-di-2vU" userLabel="Layout1Button">
                                         <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                        <accessibility key="accessibilityConfiguration" label="Layout1Button"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="Bnx-zx-Hb4"/>
                                             <constraint firstAttribute="height" constant="80" id="sp5-Vz-s2f"/>
                                         </constraints>
                                         <state key="normal" backgroundImage="Layout 1"/>
                                         <connections>
-                                            <action selector="Layout1ButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zcX-ly-2OD"/>
+                                            <action selector="LayoutButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="utd-Jw-61k"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eqW-Bq-lvN" userLabel="Layout2Button">
                                         <rect key="frame" x="100" y="0.0" width="80" height="80"/>
+                                        <accessibility key="accessibilityConfiguration" label="Layout2Button"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="h6m-cU-Mg0"/>
                                             <constraint firstAttribute="width" constant="80" id="vbu-hp-cgj"/>
                                         </constraints>
                                         <state key="normal" backgroundImage="Layout 2"/>
                                         <connections>
-                                            <action selector="Layout2ButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ae8-ur-5Pt"/>
+                                            <action selector="LayoutButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zwd-Gx-I2J"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y3L-Og-jGm" userLabel="Layout3Button">
                                         <rect key="frame" x="200" y="0.0" width="80" height="80"/>
+                                        <accessibility key="accessibilityConfiguration" label="Layout3Button"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="9Ny-DY-qEO"/>
                                             <constraint firstAttribute="height" constant="80" id="Oh7-C5-zvk"/>
                                         </constraints>
                                         <state key="normal" backgroundImage="Layout 3"/>
                                         <connections>
-                                            <action selector="Layout3ButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VVZ-ql-fYt"/>
+                                            <action selector="LayoutButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fBR-qK-jTR"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -106,7 +109,7 @@
                                                         <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" image="Plus"/>
                                                         <connections>
-                                                            <action selector="TopLeftButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UaM-wn-03e"/>
+                                                            <action selector="GridButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qdz-5x-fur"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ag8-y1-9Ca" userLabel="RightButton">
@@ -114,7 +117,7 @@
                                                         <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" image="Plus"/>
                                                         <connections>
-                                                            <action selector="TopRightButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ObU-zg-fng"/>
+                                                            <action selector="GridButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4iR-aL-jeP"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -127,7 +130,7 @@
                                                         <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" image="Plus"/>
                                                         <connections>
-                                                            <action selector="BottomLeftButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DGf-Ay-jv1"/>
+                                                            <action selector="GridButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BlI-6E-vm7"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CQl-tT-lWb" userLabel="RightButton">
@@ -135,7 +138,7 @@
                                                         <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" image="Plus"/>
                                                         <connections>
-                                                            <action selector="BottomRightButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JMX-EG-R6h"/>
+                                                            <action selector="GridButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xSg-jD-e51"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -204,15 +207,15 @@
                                 <exclude reference="juu-oO-EmD"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="CNQ-1U-7Sk"/>
                                 <exclude reference="c35-Nm-D1a"/>
+                                <exclude reference="B6I-4t-lR2"/>
+                                <exclude reference="BvB-fm-oH7"/>
                                 <exclude reference="45w-JJ-xel"/>
                                 <exclude reference="OPr-Bh-9dL"/>
                                 <exclude reference="9Qu-v8-pAf"/>
                                 <exclude reference="BYq-xC-m6k"/>
                                 <exclude reference="o9T-hl-92K"/>
-                                <exclude reference="CNQ-1U-7Sk"/>
-                                <exclude reference="B6I-4t-lR2"/>
-                                <exclude reference="BvB-fm-oH7"/>
                                 <exclude reference="a54-Jq-fic"/>
                                 <exclude reference="fxC-n5-OPq"/>
                                 <exclude reference="hMv-Mp-ZwC"/>
@@ -230,10 +233,10 @@
                                 <include reference="xGS-qA-XZT"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="9Qu-v8-pAf"/>
-                                <include reference="o9T-hl-92K"/>
                                 <include reference="B6I-4t-lR2"/>
                                 <include reference="BvB-fm-oH7"/>
+                                <include reference="9Qu-v8-pAf"/>
+                                <include reference="o9T-hl-92K"/>
                                 <include reference="a54-Jq-fic"/>
                                 <include reference="kI1-Fs-uZL"/>
                                 <include reference="w5x-96-o2B"/>
@@ -246,11 +249,11 @@
                                 <include reference="juu-oO-EmD"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="CNQ-1U-7Sk"/>
                                 <include reference="c35-Nm-D1a"/>
                                 <include reference="45w-JJ-xel"/>
                                 <exclude reference="OPr-Bh-9dL"/>
                                 <include reference="BYq-xC-m6k"/>
-                                <include reference="CNQ-1U-7Sk"/>
                                 <include reference="fxC-n5-OPq"/>
                                 <include reference="hMv-Mp-ZwC"/>
                                 <include reference="tQD-gV-byb"/>
@@ -263,9 +266,6 @@
                         <outlet property="ArrowToSwipe" destination="S8X-4k-Nbt" id="qd2-sE-JmL"/>
                         <outlet property="BottomLeftButton" destination="VsH-dh-Wsm" id="jVD-d3-SV2"/>
                         <outlet property="BottomRightButton" destination="CQl-tT-lWb" id="f0v-4H-QD4"/>
-                        <outlet property="Layout1Button" destination="YIC-di-2vU" id="RX9-QC-prw"/>
-                        <outlet property="Layout2Button" destination="eqW-Bq-lvN" id="riW-i7-n03"/>
-                        <outlet property="Layout3Button" destination="y3L-Og-jGm" id="XMi-vY-Syo"/>
                         <outlet property="MainGridView" destination="Yt0-0I-eg9" id="1iF-JH-iyt"/>
                         <outlet property="TextToSwipeLeft" destination="xGS-qA-XZT" id="Xzl-bd-mD6"/>
                         <outlet property="TextToSwipeUp" destination="juu-oO-EmD" id="Kw2-Hs-0At"/>

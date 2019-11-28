@@ -21,25 +21,27 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     @IBOutlet weak var BottomLeftButton: UIButton!
     @IBOutlet weak var TopRightButton: UIButton!
     @IBOutlet weak var BottomRightButton: UIButton!
-    
-    // The 3 buttons to choose the main grid's layout.
-    @IBOutlet weak var Layout1Button: UIButton!
-    @IBOutlet weak var Layout2Button: UIButton!
-    @IBOutlet weak var Layout3Button: UIButton!
-    
+
     // The variable used to pick an image from the user's photo library.
     var imagePicker = UIImagePickerController()
     var buttonTouched = UIButton()
     var PortraitModeInitializedFirst = false
     
     func defaultMainGridView() {
-        Layout1ButtonTouched("")
+        Layout1ButtonTouched()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         defaultMainGridView()
         ManageSwipeUpGesture()
+    }
+
+    func ManageSwipeUpGesture() {
+        addSwipeGesture(to: ArrowToSwipe, [.up, .left])
+        addSwipeGesture(to: TextToSwipeUp, [.up])
+        addSwipeGesture(to: TextToSwipeLeft, [.left])
+        addSwipeGesture(to: MainGridView, [.up, .left])
     }
     
     func addSwipeGesture(to view: UIView, _ gesture_tab: [UISwipeGestureRecognizer.Direction]) {
@@ -50,70 +52,40 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         }
     }
     
-    func ManageSwipeUpGesture() {
-        addSwipeGesture(to: ArrowToSwipe, [.up, .left])
-        addSwipeGesture(to: TextToSwipeUp, [.up])
-        addSwipeGesture(to: TextToSwipeLeft, [.left])
-        addSwipeGesture(to: MainGridView, [.up, .left])
+    @IBAction func GridButtonTouched(_ sender: UIButton) {
+        takeAPhoto()
+        buttonTouched = sender
     }
     
-    @IBAction func Layout1ButtonTouched(_ sender: Any) {
-        if (Layout1Button.currentImage == nil) {
-            removeButtonsImages()
-            BottomRightButton.isEnabled = true;
-            BottomRightButton.isHidden = false;
-            Layout1Button.setImage(UIImage(named: "Selected"), for: UIControl.State.normal)
-            TopRightButton.isEnabled = false;
-            TopRightButton.isHidden = true;
+    // Je pensais que sender.titleLabel faisait référence au label Document que l'on peut voir dans le storyboard.
+    @IBAction func LayoutButtonTouched(_ sender: UIButton) {
+        if (sender.currentImage == nil) {
+            sender.setImage(nil, for: UIControl.State.normal)
+            switch sender.titleLabel!.text! {
+                case "Layout1" :
+                Layout1ButtonTouched()
+                case "Layout2" :
+                    TopRightButton.isEnabled = true;
+                    TopRightButton.isHidden = false;
+                    BottomRightButton.isEnabled = false;
+                    BottomRightButton.isHidden = true;
+                case "Layout3" :
+                    TopRightButton.isEnabled = true;
+                    TopRightButton.isHidden = false;
+                    BottomRightButton.isEnabled = true;
+                    BottomRightButton.isHidden = false;
+                default: break;
+            }
+            sender.setImage(UIImage(named: "Selected"), for: UIControl.State.normal)
         }
     }
     
-    @IBAction func Layout2ButtonTouched(_ sender: Any) {
-        if (Layout2Button.currentImage == nil) {
-            removeButtonsImages()
-            TopRightButton.isEnabled = true;
-            TopRightButton.isHidden = false;
-            Layout2Button.setImage(UIImage(named: "Selected"), for: UIControl.State.normal)
-            BottomRightButton.isEnabled = false;
-            BottomRightButton.isHidden = true;
-        }
-    }
-    
-    @IBAction func Layout3ButtonTouched(_ sender: Any) {
-        if (Layout3Button.currentImage == nil) {
-            removeButtonsImages()
-            TopRightButton.isEnabled = true;
-            BottomRightButton.isEnabled = true;
-            TopRightButton.isHidden = false;
-            BottomRightButton.isHidden = false;
-            Layout3Button.setImage(UIImage(named: "Selected"), for: UIControl.State.normal)
-        }
-    }
-    
-    func removeButtonsImages() {
-        Layout1Button.setImage(nil, for: UIControl.State.normal)
-        Layout2Button.setImage(nil, for: UIControl.State.normal)
-        Layout3Button.setImage(nil, for: UIControl.State.normal)
-    }
-    
-    @IBAction func TopLeftButtonTouched(_ sender: Any) {
-        takeAPhoto()
-        buttonTouched = TopLeftButton
-    }
-    
-    @IBAction func TopRightButtonTouched(_ sender: Any) {
-        takeAPhoto()
-        buttonTouched = TopRightButton
-    }
-    
-    @IBAction func BottomLeftButtonTouched(_ sender: Any) {
-        takeAPhoto()
-        buttonTouched = BottomLeftButton
-    }
-    
-    @IBAction func BottomRightButtonTouched(_ sender: Any) {
-        takeAPhoto()
-        buttonTouched = BottomRightButton
+    // We have this function because of defaultMainGridView and LayoutButtonTouched.
+    func Layout1ButtonTouched() {
+        BottomRightButton.isEnabled = true;
+        BottomRightButton.isHidden = false;
+        TopRightButton.isEnabled = false;
+        TopRightButton.isHidden = true;
     }
     
     func takeAPhoto() {
@@ -181,5 +153,3 @@ extension UIView {
         return renderer.image { rendererContext in layer.render(in: rendererContext.cgContext) }
     }
 }
-
-// let rect = AVMakeRect(aspectRatio: buttonTouched.intrinsicContentSize, insideRect: buttonTouched.bounds)
