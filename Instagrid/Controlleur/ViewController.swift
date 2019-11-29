@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import AVFoundation
 
 class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
@@ -28,9 +27,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     @IBOutlet weak var Layout3Button: UIButton!
     
     // The variable used to pick an image from the user's photo library.
-    var imagePicker = UIImagePickerController()
     var buttonTouched = UIButton()
-    var PortraitModeInitializedFirst = false
+    var imagePicker = UIImagePickerController()
+    
     
     func defaultMainGridView() {
         Layout1ButtonTouched("")
@@ -42,25 +41,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         ManageSwipeUpGesture()
     }
     
-    func ManageSwipeUpGesture() {
-        addSwipeGesture(to: ArrowToSwipe, [.up, .left])
-        addSwipeGesture(to: TextToSwipeUp, [.up])
-        addSwipeGesture(to: TextToSwipeLeft, [.left])
-        addSwipeGesture(to: MainGridView, [.up, .left])
-    }
     
-    func addSwipeGesture(to view: UIView, _ gesture_tab: [UISwipeGestureRecognizer.Direction]) {
-        for direction in gesture_tab {
-            let gesture = UISwipeGestureRecognizer(target: self, action: #selector(Swiped(_:)))
-            gesture.direction = direction
-            view.addGestureRecognizer(gesture)
-        }
-    }
-    
-    @IBAction func GridButtonTouched(_ sender: UIButton) {
-        takeAPhoto()
-        buttonTouched = sender
-    }
+    // "Changing the layout" part ----
     
     @IBAction func Layout1ButtonTouched(_ sender: Any) {
         if (Layout1Button.currentImage == nil) {
@@ -100,6 +82,15 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         Layout2Button.setImage(nil, for: UIControl.State.normal)
         Layout3Button.setImage(nil, for: UIControl.State.normal)
     }
+    // End of "Changing the layout" part
+    
+    
+    // Image insertion part ----
+    
+    @IBAction func GridButtonTouched(_ sender: UIButton) {
+        takeAPhoto()
+        buttonTouched = sender
+    }
     
     func takeAPhoto() {
         if (UIImagePickerController.isSourceTypeAvailable(.photoLibrary)) {
@@ -110,14 +101,33 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         }
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        picker.dismiss(animated: true, completion: nil)
-        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage { insertPickedImageIntoMainGrid(pickedImage) }
-    }
+   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+       picker.dismiss(animated: true, completion: nil)
+    if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage { insertPickedImageIntoMainGrid(pickedImage) }
+   }
     
     func insertPickedImageIntoMainGrid(_ image: UIImage) {
         buttonTouched.contentMode = .scaleAspectFit
         buttonTouched.setImage(image, for: UIControl.State.normal)
+    }
+    // End of "Image insertion part"
+    
+    
+    // Swipe part ----
+    
+    func ManageSwipeUpGesture() {
+        addSwipeGesture(to: ArrowToSwipe, [.up, .left])
+        addSwipeGesture(to: TextToSwipeUp, [.up])
+        addSwipeGesture(to: TextToSwipeLeft, [.left])
+        addSwipeGesture(to: MainGridView, [.up, .left])
+    }
+    
+    func addSwipeGesture(to view: UIView, _ gesture_tab: [UISwipeGestureRecognizer.Direction]) {
+        for direction in gesture_tab {
+            let gesture = UISwipeGestureRecognizer(target: self, action: #selector(Swiped(_:)))
+            gesture.direction = direction
+            view.addGestureRecognizer(gesture)
+        }
     }
     
     func isSwipeValid(_ sender: UISwipeGestureRecognizer) -> Bool {
@@ -157,10 +167,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         return activityViewController
     }
     
+    // End of the "Swipe part".
+    
 }
 
 extension UIView {
-    // On étend la classe UIView avec une nouvelle propriété "image" comme screenshot. La méthode snapshotView() fournit par Apple renvoie un UIView non un UIImageView, utiliser snapshotView() nécessiterait donc en plus de caster la valeur de retour en UIImageView, la solution d'étendre la classe UIView est donc la plus simple et plus rapide solution trouvée.
+    // On étend la classe UIView avec une nouvelle propriété "image" comme screenshot. La méthode snapshotView() fournit par Apple renvoie un UIView non un UIImageView, utiliser snapshotView() nécessiterait donc en plus de caster la valeur de retour en UIImageView, la solution d'étendre la classe UIView est donc la plus simple et la plus rapide trouvée.
     var image: UIImage? {
         let renderer = UIGraphicsImageRenderer(bounds: bounds)
         return renderer.image { rendererContext in layer.render(in: rendererContext.cgContext) }
