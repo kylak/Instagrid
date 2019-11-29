@@ -42,6 +42,13 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         ManageSwipeUpGesture()
     }
     
+    func ManageSwipeUpGesture() {
+        addSwipeGesture(to: ArrowToSwipe, [.up, .left])
+        addSwipeGesture(to: TextToSwipeUp, [.up])
+        addSwipeGesture(to: TextToSwipeLeft, [.left])
+        addSwipeGesture(to: MainGridView, [.up, .left])
+    }
+    
     func addSwipeGesture(to view: UIView, _ gesture_tab: [UISwipeGestureRecognizer.Direction]) {
         for direction in gesture_tab {
             let gesture = UISwipeGestureRecognizer(target: self, action: #selector(Swiped(_:)))
@@ -50,11 +57,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         }
     }
     
-    func ManageSwipeUpGesture() {
-        addSwipeGesture(to: ArrowToSwipe, [.up, .left])
-        addSwipeGesture(to: TextToSwipeUp, [.up])
-        addSwipeGesture(to: TextToSwipeLeft, [.left])
-        addSwipeGesture(to: MainGridView, [.up, .left])
+    @IBAction func GridButtonTouched(_ sender: UIButton) {
+        takeAPhoto()
+        buttonTouched = sender
     }
     
     @IBAction func Layout1ButtonTouched(_ sender: Any) {
@@ -94,26 +99,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         Layout1Button.setImage(nil, for: UIControl.State.normal)
         Layout2Button.setImage(nil, for: UIControl.State.normal)
         Layout3Button.setImage(nil, for: UIControl.State.normal)
-    }
-    
-    @IBAction func TopLeftButtonTouched(_ sender: Any) {
-        takeAPhoto()
-        buttonTouched = TopLeftButton
-    }
-    
-    @IBAction func TopRightButtonTouched(_ sender: Any) {
-        takeAPhoto()
-        buttonTouched = TopRightButton
-    }
-    
-    @IBAction func BottomLeftButtonTouched(_ sender: Any) {
-        takeAPhoto()
-        buttonTouched = BottomLeftButton
-    }
-    
-    @IBAction func BottomRightButtonTouched(_ sender: Any) {
-        takeAPhoto()
-        buttonTouched = BottomRightButton
     }
     
     func takeAPhoto() {
@@ -181,5 +166,3 @@ extension UIView {
         return renderer.image { rendererContext in layer.render(in: rendererContext.cgContext) }
     }
 }
-
-// let rect = AVMakeRect(aspectRatio: buttonTouched.intrinsicContentSize, insideRect: buttonTouched.bounds)
